@@ -1,0 +1,31 @@
+@import './assets/fonts/manrope/manrope.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: Manrope, sans-serif;
+}
+
+.count-animate {
+  position: absolute;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  pointer-events: none;
+  user-select: none;
+  animation: move-up 1s forwards;
+}
+
+@keyframes move-up {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
