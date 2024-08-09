@@ -7,6 +7,7 @@ import DollarIcon from './dollar.svg';
 import EarnIcon from './earn.svg';
 import JetIcon from './jet.svg';
 import MoneyIcon from './money.svg';
+import NoAvatarIcon from './no-avatar.svg';
 import ReloadIcon from './reload.svg';
 import SealIcon from './seal.svg';
 import SoundOnIcon from './sound-on.svg';
@@ -26,6 +27,7 @@ export {
   EarnIcon,
   JetIcon,
   MoneyIcon,
+  NoAvatarIcon,
   ReloadIcon,
   SealIcon,
   SoundOnIcon,

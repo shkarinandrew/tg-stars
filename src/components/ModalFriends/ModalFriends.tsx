@@ -1,8 +1,12 @@
 import { FC } from 'react';
-import { AddUserIcon, CopyIcon, ReloadIcon, ThreeArrowIcon } from '../../assets/icons';
+import {
+  AddUserIcon,
+  CopyIcon,
+  NoAvatarIcon,
+  ReloadIcon,
+  ThreeArrowIcon,
+} from '../../assets/icons';
 import Button from '../Button';
-
-import noAvatar from '../../assets/imgs/no-avatar.png';
 
 const ModalFriends: FC = () => {
   return (
@@ -27,9 +31,7 @@ const ModalFriends: FC = () => {
 
       <div className='flex flex-col gap-2 w-full'>
         <div className='bg-[#292929] w-full px-3.5 py-2 rounded-xl flex items-center gap-3.5'>
-          <div className='w-10 h-10'>
-            <img src={noAvatar} alt='avatar' className='w-full h-full object-cover' />
-          </div>
+          <NoAvatarIcon className='w-10 h-10' />
           <div>
             <div className='text-lg font-bold text-white'>V999-Anton</div>
             <div className='text-[10px] font-medium text-[#ABABAB]'>
@@ -38,9 +40,7 @@ const ModalFriends: FC = () => {
           </div>
         </div>
         <div className='bg-[#292929] w-full px-3.5 py-2 rounded-xl flex items-center gap-3.5'>
-          <div className='w-10 h-10'>
-            <img src={noAvatar} alt='avatar' className='w-full h-full object-cover' />
-          </div>
+          <NoAvatarIcon className='w-10 h-10' />
           <div>
             <div className='text-lg font-bold text-white'>V999-Anton</div>
             <div className='text-[10px] font-medium text-[#ABABAB]'>

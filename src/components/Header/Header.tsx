@@ -2,8 +2,7 @@ import { FC } from 'react';
 import Container from '../Container';
 import ProgressBar from '../ProgressBar';
 
-import { JetIcon, SoundOnIcon, VibrationIcon } from '../../assets/icons';
-import NoAvatarImg from '../../assets/imgs/no-avatar.png';
+import { JetIcon, NoAvatarIcon, SoundOnIcon, VibrationIcon } from '../../assets/icons';
 import Button from '../Button';
 
 const Header: FC = () => {
@@ -12,13 +11,8 @@ const Header: FC = () => {
       <Container className='flex flex-col gap-4'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center gap-2'>
-            <div className='w-10 h-10'>
-              <img
-                src={NoAvatarImg}
-                alt='no avatar'
-                className='w-full h-full object-cover'
-              />
-            </div>
+            <NoAvatarIcon className='w-10 h-10' />
+
             <div className='text-sm font-medium'>Enot334</div>
           </div>
           <div className='flex items-center gap-4'>
