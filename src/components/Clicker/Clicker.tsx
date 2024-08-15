@@ -1,9 +1,12 @@
 import Spline from '@splinetool/react-spline';
 import { Application } from '@splinetool/runtime';
+import { useHapticFeedback } from '@tma.js/sdk-react';
 import React, { FC, useCallback, useRef } from 'react';
 
 const Clicker: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
+
+  const { impactOccurred } = useHapticFeedback();
 
   const onLoad = useCallback((spline: Application) => {
     const canvas = spline.canvas;
@@ -14,6 +17,8 @@ const Clicker: FC = () => {
   const handleClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
     const { current } = ref;
     if (!current) return;
+
+    impactOccurred('heavy');
 
     const { left, top } = current.parentElement!.getBoundingClientRect();
     const x = event.clientX - left;
