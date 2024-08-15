@@ -10,12 +10,14 @@ import MoneyIcon from './money.svg';
 import NoAvatarIcon from './no-avatar.svg';
 import ReloadIcon from './reload.svg';
 import SealIcon from './seal.svg';
+import SoundOffIcon from './sound-off.svg';
 import SoundOnIcon from './sound-on.svg';
 import StarIcon from './star.svg';
 import SubtractIcon from './subtract.svg';
 import TelegramIcon from './telegram.svg';
 import ThreeArrowIcon from './three-arrow.svg';
-import VibrationIcon from './vibration.svg';
+import VibrationOffIcon from './vibration-off.svg';
+import VibrationOnIcon from './vibration-on.svg';
 
 export {
   AddUserIcon,
@@ -30,10 +32,12 @@ export {
   NoAvatarIcon,
   ReloadIcon,
   SealIcon,
+  SoundOffIcon,
   SoundOnIcon,
   StarIcon,
   SubtractIcon,
   TelegramIcon,
   ThreeArrowIcon,
-  VibrationIcon,
+  VibrationOffIcon,
+  VibrationOnIcon,
 };

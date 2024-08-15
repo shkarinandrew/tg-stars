@@ -2,10 +2,21 @@ import { FC } from 'react';
 import Container from '../Container';
 import ProgressBar from '../ProgressBar';
 
-import { JetIcon, NoAvatarIcon, SoundOnIcon, VibrationIcon } from '../../assets/icons';
+import {
+  JetIcon,
+  NoAvatarIcon,
+  SoundOffIcon,
+  SoundOnIcon,
+  VibrationOffIcon,
+  VibrationOnIcon,
+} from '../../assets/icons';
+import { useAudio, useVibration } from '../../hooks';
 import Button from '../Button';
 
 const Header: FC = () => {
+  const { isPlaying, togglePlay } = useAudio();
+  const { isVibration, toggleVibration } = useVibration();
+
   return (
     <header>
       <Container className='flex flex-col gap-4'>
@@ -16,11 +27,11 @@ const Header: FC = () => {
             <div className='text-sm font-medium'>Enot334</div>
           </div>
           <div className='flex items-center gap-4'>
-            <Button className='!p-1'>
-              <SoundOnIcon />
+            <Button className='!p-1' onClick={togglePlay}>
+              {!isPlaying ? <SoundOffIcon /> : <SoundOnIcon />}
             </Button>
-            <Button className='!p-1'>
-              <VibrationIcon />
+            <Button className='!p-1' onClick={toggleVibration}>
+              {!isVibration ? <VibrationOffIcon /> : <VibrationOnIcon />}
             </Button>
           </div>
         </div>
