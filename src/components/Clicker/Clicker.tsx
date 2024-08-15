@@ -3,8 +3,18 @@ import { Application } from '@splinetool/runtime';
 import { useHapticFeedback } from '@tma.js/sdk-react';
 import React, { FC, useCallback, useRef } from 'react';
 
+import tapAudio from '../../assets/audio/tap.mp3';
+import { useAudio, useVibration } from '../../hooks';
+
 const Clicker: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
+
+  const { isPlaying } = useAudio();
+  const { isVibration } = useVibration();
+
+  const playAudio = useCallback(() => {
+    new Audio(tapAudio).play();
+  }, []);
 
   const { impactOccurred } = useHapticFeedback();
 
@@ -14,28 +24,37 @@ const Clicker: FC = () => {
     canvas.style.height = ref.current?.parentElement?.offsetHeight + 'px';
   }, []);
 
-  const handleClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
-    const { current } = ref;
-    if (!current) return;
+  const handleClick = useCallback(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      const { current } = ref;
+      if (!current) return;
 
-    impactOccurred('heavy');
+      if (isPlaying) {
+        playAudio();
+      }
 
-    const { left, top } = current.parentElement!.getBoundingClientRect();
-    const x = event.clientX - left;
-    const y = event.clientY - top;
+      if (isVibration) {
+        impactOccurred('heavy');
+      }
 
-    const plusOne = document.createElement('div');
-    plusOne.classList.add('count-animate');
-    plusOne.textContent = '+1';
-    plusOne.style.left = `${x - 10}px`;
-    plusOne.style.top = `${y - 20}px`;
+      const { left, top } = current.parentElement!.getBoundingClientRect();
+      const x = event.clientX - left;
+      const y = event.clientY - top;
 
-    current.parentElement?.appendChild(plusOne);
+      const plusOne = document.createElement('div');
+      plusOne.classList.add('count-animate');
+      plusOne.textContent = '+1';
+      plusOne.style.left = `${x - 10}px`;
+      plusOne.style.top = `${y - 20}px`;
 
-    setTimeout(() => {
-      plusOne.remove();
-    }, 1000);
-  }, []);
+      current.parentElement?.appendChild(plusOne);
+
+      setTimeout(() => {
+        plusOne.remove();
+      }, 1000);
+    },
+    [playAudio, isPlaying, isVibration],
+  );
 
   return (
     <Spline
