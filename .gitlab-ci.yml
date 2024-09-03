@@ -31,7 +31,7 @@ build image:
   extends: .build/oci
   variables:
     USE_CORP_CR: 1
-    OCI_PROJECT_NAME: tgstars/frontend
+    OCI_PROJECT_NAME: tg-stars/frontend
   needs: ["build dist"]
   dependencies: ["build dist"]
 
@@ -39,5 +39,5 @@ rollout dev:
   extends: .gitops/rollout
   rules: !reference [.rules/rollout-dev]
   variables:
-    SERVICE_NAME: tgstars-frontend
+    SERVICE_NAME: tg-stars-frontend
     ENV_NAME: dev
