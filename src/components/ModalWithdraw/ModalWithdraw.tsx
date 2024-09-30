@@ -2,6 +2,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import { FC } from 'react';
 import { useClicker, useGameWithdrawalMutation, useModal } from '../../hooks';
+import { DEFAULT_REQUEST_API } from '../../services';
 import Button from '../Button';
 import Input from '../Input';
 import PaymentMethods from '../PaymentMethods';
@@ -27,7 +28,7 @@ const ModalWithdraw: FC = () => {
     },
     validationSchema: validationSchema(balance),
     onSubmit: (values) => {
-      mutate({ bot_username: 'test', user_id: '1', amount: parseInt(values.amount, 10) });
+      mutate({ ...DEFAULT_REQUEST_API, amount: parseInt(values.amount, 10) });
     },
   });
 

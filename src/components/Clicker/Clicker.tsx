@@ -13,6 +13,7 @@ import {
   useProfileQuery,
   useVibration,
 } from '../../hooks';
+import { DEFAULT_REQUEST_API } from '../../services';
 
 const Clicker: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -32,7 +33,7 @@ const Clicker: FC = () => {
 
   useEffect(() => {
     if (debounce) {
-      mutate({ bot_username: 'test', user_id: '1', energy_spent: debounce as number });
+      mutate({ ...DEFAULT_REQUEST_API, energy_spent: debounce as number });
     }
   }, [debounce, mutate]);
 
