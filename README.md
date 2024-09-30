@@ -68,5 +68,7 @@ Frontend часть приложения TG Stars
 Примечание: dotenv файла
 
 ```
-VITE_PORT=3000
+VITE_APP_BASE_URL_API=.../api
+VITE_APP_TOKEN=
+VITE_APP_MAX_COUNT=
 ```

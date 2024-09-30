@@ -5,6 +5,7 @@ export * from './useDebounce';
 export * from './useGameDailyRewardQuery';
 export * from './useGameFriendsQuery';
 export * from './useGameWithdrawalMutation';
+export * from './useHapticFeedback';
 export * from './useModal';
 export * from './usePortal';
 export * from './useProfileMutation';
