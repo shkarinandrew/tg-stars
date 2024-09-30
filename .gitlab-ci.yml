@@ -11,10 +11,23 @@ include:
       - /lib/build/oci.yaml
       - /lib/gitops/rollout.yaml
 
-.build_dev_vars:
-  # - export VITE_APP_API_URL=https://tgstars.monowork.dev
-  # - export VITE_APP_TOKEN=
+stages:
+  - build
+  - rollout
+
+.build_vars:
   - export VITE_PORT=3000
+  - echo $DEPLOY_TARGET
+  - |
+    if [ "$DEPLOY_TARGET" == "dev" ]; then
+        export VITE_APP_API_URL=$VITE_APP_API_URL_DEV
+        export VITE_APP_TOKEN=$VITE_APP_TOKEN_DEV
+    elif [ "$DEPLOY_TARGET" == "production" ]; then
+        export VITE_APP_API_URL=$VITE_APP_API_URL_PROD
+        export VITE_APP_TOKEN=$VITE_APP_TOKEN_PROD
+    else
+        echo "Переменная DEPLOY_TARGET имеет некорректное значение: $DEPLOY_TARGET"
+    fi
 
 stages:
   - build
@@ -24,7 +37,7 @@ build dist:
   extends:
     - .build/nodejs
   before_script:
-    - !reference [ .build_dev_vars ]
+    - !reference [ .build_vars ]
     - !reference [ .build/nodejs, before_script ]
 
 build image:
