@@ -1,6 +1,6 @@
 import Spline from '@splinetool/react-spline';
 import { Application } from '@splinetool/runtime';
-import { useHapticFeedback } from '@tma.js/sdk-react';
+
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
@@ -9,6 +9,7 @@ import {
   useAudio,
   useClicker,
   useDebounce,
+  useHapticFeedback,
   useProfileMutation,
   useProfileQuery,
   useVibration,
