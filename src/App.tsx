@@ -1,4 +1,5 @@
-import { FC } from 'react';
+import { useViewport } from '@tma.js/sdk-react';
+import { FC, useEffect } from 'react';
 import BonusPartners from './components/BonusPartners';
 import Clicker from './components/Clicker';
 import CoinsInfo from './components/CoinsInfo';
@@ -15,8 +16,14 @@ import { useClicker, useModal, useProfileQuery } from './hooks';
 const App: FC = () => {
   const { data } = useProfileQuery();
 
+  const viewport = useViewport();
+
   const { open, type, typeContent, onClose } = useModal();
   const { balance } = useClicker();
+
+  useEffect(() => {
+    viewport?.expand();
+  }, [viewport]);
 
   return (
     <div className='flex flex-col bg-[#020202] text-white pt-9 select-none overflow-hidden'>

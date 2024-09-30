@@ -1,6 +1,6 @@
 import Spline from '@splinetool/react-spline';
 import { Application } from '@splinetool/runtime';
-import { useHapticFeedback } from '@tma.js/sdk-react';
+
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
@@ -9,10 +9,12 @@ import {
   useAudio,
   useClicker,
   useDebounce,
+  useHapticFeedback,
   useProfileMutation,
   useProfileQuery,
   useVibration,
 } from '../../hooks';
+import { DEFAULT_REQUEST_API } from '../../services';
 
 const Clicker: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -32,7 +34,7 @@ const Clicker: FC = () => {
 
   useEffect(() => {
     if (debounce) {
-      mutate({ bot_username: 'test', user_id: '1', energy_spent: debounce as number });
+      mutate({ ...DEFAULT_REQUEST_API, energy_spent: debounce as number });
     }
   }, [debounce, mutate]);
 

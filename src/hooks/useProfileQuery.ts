@@ -1,14 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { getProfile } from '../services';
+import { DEFAULT_REQUEST_API, getProfile } from '../services';
 
 export const useProfileQuery = () => {
   const profile = useQuery({
     queryKey: ['profile'],
-    queryFn: async () =>
-      await getProfile({
-        bot_username: 'test',
-        user_id: '1',
-      }),
+    queryFn: async () => await getProfile(DEFAULT_REQUEST_API),
   });
 
   return profile;
