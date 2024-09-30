@@ -22,9 +22,11 @@ stages:
     if [ "$DEPLOY_TARGET" == "dev" ]; then
         export VITE_APP_API_URL=$VITE_APP_API_URL_DEV
         export VITE_APP_TOKEN=$VITE_APP_TOKEN_DEV
+        export VITE_APP_MAX_COUNT=5000000
     elif [ "$DEPLOY_TARGET" == "production" ]; then
         export VITE_APP_API_URL=$VITE_APP_API_URL_PROD
         export VITE_APP_TOKEN=$VITE_APP_TOKEN_PROD
+        export VITE_APP_MAX_COUNT=5000000
     else
         echo "Переменная DEPLOY_TARGET имеет некорректное значение: $DEPLOY_TARGET"
     fi
