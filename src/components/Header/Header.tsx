@@ -58,7 +58,7 @@ const Header: FC = () => {
             </Button>
           </div>
         </div>
-        <ProgressBar icon={<JetIcon className='z-[1]' />} count={900} maxCount={1000}>
+        <ProgressBar icon={<JetIcon className='z-[1]' />} count={energy} maxCount={1000}>
           {energy}/{1000}
         </ProgressBar>
       </Container>

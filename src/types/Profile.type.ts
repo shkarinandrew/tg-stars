@@ -1,4 +1,4 @@
-import { DailyRewardType } from './DailyRewardType';
+import { DailyRewardType } from './DailyReward.type';
 
 export type ProfyleType = {
   id: string;

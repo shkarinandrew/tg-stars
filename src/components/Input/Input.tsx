@@ -1,7 +1,13 @@
 import { FC } from 'react';
 import { IInput } from './Input.interface';
 
-const Input: FC<IInput> = ({ id, className = '', label, ...props }) => {
+const Input: FC<IInput> = ({
+  id,
+  className = '',
+  classNameLabel = '',
+  label,
+  ...props
+}) => {
   return (
     <div className='relative w-full'>
       <input
@@ -12,7 +18,7 @@ const Input: FC<IInput> = ({ id, className = '', label, ...props }) => {
       />
       <label
         htmlFor={id}
-        className='absolute top-0 left-0 text-[#ABABAB] text-xs font-medium peer-focus:text-[#5A60FF]'
+        className={`absolute top-0 left-0 text-[#ABABAB] text-xs font-medium peer-focus:text-[#5A60FF] ${classNameLabel}`}
       >
         {label}
       </label>
