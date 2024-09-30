@@ -14,6 +14,7 @@ import { useClicker, useModal, useProfileQuery } from './hooks';
 
 const App: FC = () => {
   const { data } = useProfileQuery();
+
   const { open, type, typeContent, onClose } = useModal();
   const { balance } = useClicker();
 

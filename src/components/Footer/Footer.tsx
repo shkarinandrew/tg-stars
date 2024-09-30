@@ -1,9 +1,27 @@
 import { FC } from 'react';
-import { useModal } from '../../hooks';
+import { useCheckSubscriptionQuery, useClicker, useModal } from '../../hooks';
 import { navigateList } from './Footer.config';
 
+const { VITE_APP_MAX_COUNT } = import.meta.env;
+
 const Footer: FC = () => {
+  const { data: subscription } = useCheckSubscriptionQuery();
+  const { balance } = useClicker();
   const { onOpen, setContentType, setType } = useModal();
+
+  const isWithdraw = () => {
+    if (!subscription?.result) {
+      setType('center');
+      setContentType('subscribe');
+      return;
+    }
+
+    if (balance < VITE_APP_MAX_COUNT) {
+      setType('bottom');
+      setContentType('cash');
+      return;
+    }
+  };
 
   const handleClick = (name: string) => {
     switch (name) {
@@ -20,8 +38,7 @@ const Footer: FC = () => {
         onOpen();
         break;
       case navigateList[3].title:
-        setType('center');
-        setContentType('withdraw');
+        isWithdraw();
         onOpen();
         break;
     }
