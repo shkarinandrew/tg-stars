@@ -30,8 +30,8 @@ const ModalWithdraw: FC = () => {
       </p>
       <div className='text-xs font-medium text-center text-white'>Balance: ~1000$</div>
       <PaymentMethods />
-      <form onSubmit={formik.handleSubmit} className='w-full'>
-        <div className='flex flex-col gap-3 min-w-[calc(100vw-72px)]'>
+      <form onSubmit={formik.handleSubmit} className='min-w-[calc(100vw-72px)]'>
+        <div className='flex flex-col gap-3 w-full'>
           <Input
             label='Details:'
             id='details'
@@ -58,5 +58,4 @@ const ModalWithdraw: FC = () => {
     </>
   );
 };
-
 export default ModalWithdraw;

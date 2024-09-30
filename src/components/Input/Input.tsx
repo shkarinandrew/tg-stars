@@ -1,10 +1,7 @@
 import { FC } from 'react';
+import { IInput } from './Input.interface';
 
-interface IIncout extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
-  label: string;
-}
-
-const Input: FC<IIncout> = ({ id, className = '', label, ...props }) => {
+const Input: FC<IInput> = ({ id, className = '', label, ...props }) => {
   return (
     <div className='relative w-full'>
       <input

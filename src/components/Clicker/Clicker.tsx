@@ -1,13 +1,40 @@
 import Spline from '@splinetool/react-spline';
 import { Application } from '@splinetool/runtime';
 import { useHapticFeedback } from '@tma.js/sdk-react';
-import React, { FC, useCallback, useRef } from 'react';
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
+import { useQueryClient } from '@tanstack/react-query';
 import tapAudio from '../../assets/audio/tap.mp3';
-import { useAudio, useVibration } from '../../hooks';
+import {
+  useAudio,
+  useClicker,
+  useDebounce,
+  useProfileMutation,
+  useProfileQuery,
+  useVibration,
+} from '../../hooks';
 
 const Clicker: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
+  const [count, setCount] = useState<number>(0);
+  const debounce = useDebounce(count, 1000);
+  const { updateEnergy, updateBalance } = useClicker();
+
+  const queryClient = useQueryClient();
+
+  const { data } = useProfileQuery();
+  const { mutate } = useProfileMutation({
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['profile'] });
+      setCount(0);
+    },
+  });
+
+  useEffect(() => {
+    if (debounce) {
+      mutate({ bot_username: 'test', user_id: '1', energy_spent: debounce as number });
+    }
+  }, [debounce, mutate]);
 
   const { isPlaying } = useAudio();
   const { isVibration } = useVibration();
@@ -43,17 +70,28 @@ const Clicker: FC = () => {
 
       const plusOne = document.createElement('div');
       plusOne.classList.add('count-animate');
-      plusOne.textContent = '+1';
+      plusOne.textContent = `+${data?.tap_reward || 1}`;
       plusOne.style.left = `${x - 10}px`;
       plusOne.style.top = `${y - 20}px`;
 
       current.parentElement?.appendChild(plusOne);
+      setCount((prev) => prev + 1);
+      updateEnergy((prev) => prev - 1);
+      updateBalance((prev) => prev + (data?.tap_reward || 1));
 
       setTimeout(() => {
         plusOne.remove();
       }, 1000);
     },
-    [playAudio, isPlaying, isVibration],
+    [
+      isPlaying,
+      isVibration,
+      data?.tap_reward,
+      updateEnergy,
+      updateBalance,
+      playAudio,
+      impactOccurred,
+    ],
   );
 
   return (
