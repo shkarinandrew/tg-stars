@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { FC } from 'react';
 import { CloseCircleIcon } from '../../assets/icons';
 import { usePortal, useScrollHide } from '../../hooks';
@@ -8,16 +9,16 @@ const Modal: FC<IModal> = ({ className = '', children, open, onClose, type }) =>
 
   useScrollHide();
 
-  const classNameOpen = open ? 'flex' : 'hidden';
   const classNameWrapper = type === 'center' ? 'items-center justify-center p-4' : '';
   const classNameContent =
     type === 'center'
-      ? 'max-w-[350px] rounded-[32px] relative'
+      ? 'rounded-[32px] relative'
       : 'w-full rounded-t-[32px] bottom-0 h-fit absolute';
 
   return render(
-    <div
-      className={`bg-black/50 fixed z-20 h-[100svh] w-[100svw] left-0 top-0 overflow-y-auto ${classNameWrapper} ${classNameOpen}`}
+    <motion.div
+      animate={{ translateY: open ? 0 : `100%`, display: open ? 'flex' : 'hidden' }}
+      className={`bg-black/50 fixed z-20 h-[100svh] w-[100svw] left-0 top-0 overflow-y-auto ${classNameWrapper}`}
     >
       <div className='bg-[radial-gradient(50%_50%_at_50%_50%,#5A60FF_52%,rgba(18,18,18,0.00)_100%)] h-[100svh] w-[200svw] -left-1/2 top-0 fixed opacity-30' />
       <div className={`bg-black m-auto] px-5 py-9 ${classNameContent} ${className}`}>
@@ -30,7 +31,7 @@ const Modal: FC<IModal> = ({ className = '', children, open, onClose, type }) =>
         />
         {children}
       </div>
-    </div>,
+    </motion.div>,
   );
 };
 
