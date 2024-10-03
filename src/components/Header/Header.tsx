@@ -37,7 +37,7 @@ const Header: FC = () => {
 
         return prev + 1;
       });
-    }, 1000);
+    }, 12_000);
     return () => clearInterval(interval);
   }, [updateEnergy]);
 
