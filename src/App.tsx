@@ -11,14 +11,15 @@ import ModalDaily from './components/ModalDaily';
 import ModalFriends from './components/ModalFriends';
 import ModalSubscription from './components/ModalSubscription';
 import ModalWithdraw from './components/ModalWithdraw';
-import { useClicker, useModal, useProfileQuery } from './hooks';
+import { useClicker, useGameFriendsQuery, useModal, useProfileQuery } from './hooks';
 
 const App: FC = () => {
   const { data } = useProfileQuery();
+  useGameFriendsQuery();
 
   const viewport = useViewport();
 
-  const { open, type, typeContent, onClose } = useModal();
+  const { typeContent } = useModal();
   const { balance } = useClicker();
 
   useEffect(() => {
@@ -34,12 +35,7 @@ const App: FC = () => {
         <BonusPartners />
       </main>
       <Footer />
-      <Modal
-        type={type}
-        open={open}
-        onClose={onClose}
-        className='flex flex-col items-center gap-4'
-      >
+      <Modal className='flex flex-col items-center gap-4'>
         {typeContent === 'subscribe' && <ModalSubscription />}
         {typeContent === 'boost' && <ModalFriends />}
         {typeContent === 'daily' && <ModalDaily />}

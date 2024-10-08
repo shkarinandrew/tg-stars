@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Container from '../Container';
 
-import advertisingImg from '../../assets/imgs/advertising.png';
+import { advertisingIconUrl } from '../../assets/icons';
 import { useModal } from '../../hooks';
 
 const BonusPartners: FC = () => {
@@ -17,7 +17,7 @@ const BonusPartners: FC = () => {
     <Container
       className='relative h-[110px] mx-4 py-3 px-3.5 border-2 border-[#292929] mb-5 rounded-[20px]'
       style={{
-        backgroundImage: `url("${advertisingImg}")`,
+        backgroundImage: `url("${advertisingIconUrl}")`,
         backgroundSize: 'cover',
       }}
     >
