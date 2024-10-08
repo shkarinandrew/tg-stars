@@ -7,7 +7,14 @@ import ListFriends from '../ListFriends';
 
 const ModalFriends: FC = () => {
   const { refetch } = useGameFriendsQuery();
+  const {
+    data: dataGameFriends,
+    isLoading: isLoadingGameFriends,
+    isFetching: isFetchingGameFriends,
+  } = useGameFriendsQuery();
   const { data, isLoading, isFetching } = useProfileQuery();
+
+  const friendsCount = dataGameFriends?.length || 0;
 
   const utils = useUtils();
 
@@ -22,7 +29,9 @@ const ModalFriends: FC = () => {
         Your invitations
         <ThreeArrowIcon />
       </div>
-      <h2 className='text-[48px] font-bold text-white leading-none'>40 Friends</h2>
+      <h2 className='text-[48px] font-bold text-white leading-none'>
+        {friendsCount} Friends
+      </h2>
       <p className='text-center text-[#ABABAB] font-bold text-xs'>
         Invite friends to increase your
         <br />
@@ -32,7 +41,10 @@ const ModalFriends: FC = () => {
       <div className='h-0.5 w-screen bg-[#292929]' />
       <div className='text-base font-medium text-white flex items-center justify-between w-full'>
         <div>List of invited friends</div>
-        <ReloadIcon onClick={() => refetch()} />
+        <ReloadIcon
+          onClick={() => refetch()}
+          className={isLoadingGameFriends || isFetchingGameFriends ? 'animate-spin' : ''}
+        />
       </div>
 
       <ListFriends />

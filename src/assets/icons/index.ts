@@ -1,4 +1,5 @@
 import AddUserIcon from './add-user.svg';
+import advertisingIconUrl from './advertising.svg?url';
 import AwardsIcon from './awards.svg';
 import BoostIcon from './boost.svg';
 import CloseCircleIcon from './close-circle.svg';
@@ -41,3 +42,5 @@ export {
   VibrationOffIcon,
   VibrationOnIcon,
 };
+
+export { advertisingIconUrl };

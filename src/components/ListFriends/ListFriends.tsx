@@ -3,10 +3,14 @@ import { NoAvatarIcon } from '../../assets/icons';
 import { useGameFriendsQuery } from '../../hooks';
 
 const ListFriends: FC = () => {
-  const { data, isLoading, isFetching } = useGameFriendsQuery();
+  const { data } = useGameFriendsQuery();
 
-  if (isLoading || isFetching) {
-    return <div className='text-center text-white'>Loading...</div>;
+  if (!data) {
+    return (
+      <div className='h-[110px] rounded-[20px] bg-[#292929] w-full flex justify-center items-center text-[#ABABAB] font-medium text-[10px]'>
+        You haven't invited anyone yet
+      </div>
+    );
   }
 
   return (

@@ -1,10 +1,4 @@
-import { ModalContextType } from '../../context/ModalContext';
-
-export interface IModal
-  extends Omit<
-    ModalContextType,
-    'onOpen' | 'setType' | 'typeContent' | 'setContentType'
-  > {
+export interface IModal {
   className?: string;
   children: React.ReactNode;
 }
