@@ -20,7 +20,7 @@ const Clicker: FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [count, setCount] = useState<number>(0);
   const debounce = useDebounce(count, 1000);
-  const { updateEnergy, updateBalance } = useClicker();
+  const { updateEnergy, updateBalance, energy } = useClicker();
 
   const queryClient = useQueryClient();
 
@@ -56,7 +56,7 @@ const Clicker: FC = () => {
   const handleClick = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
       const { current } = ref;
-      if (!current) return;
+      if (!current || energy <= 0) return;
 
       if (isPlaying) {
         playAudio();
@@ -93,6 +93,7 @@ const Clicker: FC = () => {
       updateBalance,
       playAudio,
       impactOccurred,
+      energy,
     ],
   );
 
