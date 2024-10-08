@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { SealIcon, StarIcon } from '../../assets/icons';
-import { useGameDailyRewardQuery, useProfileQuery } from '../../hooks';
+import { useGameDailyRewardQuery, useModal, useProfileQuery } from '../../hooks';
 import Button from '../Button';
 
 const ModalDaily: FC = () => {
@@ -11,17 +11,22 @@ const ModalDaily: FC = () => {
     refetch: refetchProfile,
   } = useProfileQuery();
   const { refetch, isFetching } = useGameDailyRewardQuery();
+  const { onClose } = useModal();
+
+  const isAccepted = profile?.daily_reward.accepted;
 
   const handleRefetch = async () => {
+    if (!isAccepted) {
+      return onClose();
+    }
+
     await refetch();
     refetchProfile();
   };
 
-  const isDisabled =
-    isLoadingProfile ||
-    isFetching ||
-    isFetchingProfile ||
-    !profile?.daily_reward.accepted;
+  const btnTitle = isAccepted ? 'GET BONUS' : 'Come back later';
+
+  const isDisabled = isLoadingProfile || isFetching || isFetchingProfile;
 
   return (
     <>
@@ -47,6 +52,9 @@ const ModalDaily: FC = () => {
           <SealIcon className='mx-auto' />
         </div>
         <div className='rounded-xl relative bg-black py-4 min-w-[50%] text-center before:content-[""] before:w-full before:h-5 before:bg-[linear-gradient(320deg,#FC7FEB_0.29%,#A25CBE_42.72%,#5F74CF_75.02%,#5978DF_106.35%)] before:absolute before:top-0 before:left-0 before:-z-[1] before:-translate-y-1 before:rounded-t-xl'>
+          {!isAccepted && (
+            <SealIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' />
+          )}
           <div className='text-2xl font-medium'>Day {profile?.daily_reward.day}</div>
           <StarIcon className='mx-auto' />
           <div className='text-[38px] font-bold'>{profile?.daily_reward.amount}</div>
@@ -62,7 +70,7 @@ const ModalDaily: FC = () => {
         </div>
       </div>
       <Button disabled={isDisabled} className='w-full mt-3 z-10' onClick={handleRefetch}>
-        GET BONUS
+        {btnTitle}
       </Button>
     </>
   );
