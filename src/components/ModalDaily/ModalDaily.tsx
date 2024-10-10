@@ -28,6 +28,10 @@ const ModalDaily: FC = () => {
 
   const isDisabled = isLoadingProfile || isFetching || isFetchingProfile;
 
+  const classNameTopWrapperIsAccepted = isAccepted
+    ? 'before:bg-[linear-gradient(320deg,#FC7FEB_0.29%,#A25CBE_42.72%,#5F74CF_75.02%,#5978DF_106.35%)]'
+    : 'before:bg-[#ABABAB]';
+
   return (
     <>
       <h2 className='text-[48px] font-bold bg-[linear-gradient(166deg,#FC7FEB_0.29%,#A25CBE_42.72%,#5F74CF_75.02%,#5978DF_106.35%)] text-transparent bg-clip-text inline-block'>
@@ -51,7 +55,9 @@ const ModalDaily: FC = () => {
         <div className='rounded-xl relative bg-black min-w-[35%] text-center before:content-[""] before:w-full before:h-5 before:bg-[#ABABAB] before:absolute before:top-0 before:left-0 before:-z-[1] before:-translate-y-1 before:rounded-t-xl'>
           <SealIcon className='mx-auto' />
         </div>
-        <div className='rounded-xl relative bg-black py-4 min-w-[50%] text-center before:content-[""] before:w-full before:h-5 before:bg-[linear-gradient(320deg,#FC7FEB_0.29%,#A25CBE_42.72%,#5F74CF_75.02%,#5978DF_106.35%)] before:absolute before:top-0 before:left-0 before:-z-[1] before:-translate-y-1 before:rounded-t-xl'>
+        <div
+          className={`rounded-xl relative bg-black py-4 min-w-[50%] text-center before:content-[""] before:w-full before:h-5 before:absolute before:top-0 before:left-0 before:-z-[1] before:-translate-y-1 before:rounded-t-xl ${classNameTopWrapperIsAccepted}`}
+        >
           {!isAccepted && (
             <SealIcon className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' />
           )}
