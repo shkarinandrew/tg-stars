@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*::before,
+*::after {
+  @apply select-none;
+}
+
 html {
   font-family: Manrope, sans-serif;
 }
