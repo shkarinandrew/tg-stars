@@ -1,7 +1,7 @@
 import { useUtils } from '@tma.js/sdk-react';
 import { FC } from 'react';
 import { AddUserIcon, CopyIcon, ReloadIcon, ThreeArrowIcon } from '../../assets/icons';
-import { useGameFriendsQuery, useProfileQuery } from '../../hooks';
+import { useCopyToClipboard, useGameFriendsQuery, useProfileQuery } from '../../hooks';
 import Button from '../Button';
 import ListFriends from '../ListFriends';
 
@@ -16,10 +16,15 @@ const ModalFriends: FC = () => {
 
   const friendsCount = dataGameFriends?.length || 0;
 
+  const { copy } = useCopyToClipboard();
   const utils = useUtils();
 
   const shareReferralLink = () => {
     utils.shareURL(data?.referral_link || '');
+  };
+
+  const copyReferralLink = async () => {
+    await copy(data?.referral_link || '');
   };
 
   return (
@@ -63,7 +68,7 @@ const ModalFriends: FC = () => {
           </div>
           <AddUserIcon />
         </Button>
-        <Button className='p-4'>
+        <Button className='p-4' onClick={copyReferralLink}>
           <CopyIcon />
         </Button>
       </div>
