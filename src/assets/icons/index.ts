@@ -3,6 +3,7 @@ import advertisingIconUrl from './advertising.svg?url';
 import AwardsIcon from './awards.svg';
 import BoostIcon from './boost.svg';
 import CloseCircleIcon from './close-circle.svg';
+import CloseIcon from './close.svg';
 import CopyIcon from './copy.svg';
 import DollarIcon from './dollar.svg';
 import EarnIcon from './earn.svg';
@@ -25,6 +26,7 @@ export {
   AwardsIcon,
   BoostIcon,
   CloseCircleIcon,
+  CloseIcon,
   CopyIcon,
   DollarIcon,
   EarnIcon,

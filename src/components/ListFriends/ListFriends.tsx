@@ -5,7 +5,7 @@ import { useGameFriendsQuery } from '../../hooks';
 const ListFriends: FC = () => {
   const { data } = useGameFriendsQuery();
 
-  if (!data) {
+  if (!data?.length) {
     return (
       <div className='h-[110px] rounded-[20px] bg-[#292929] w-full flex justify-center items-center text-[#ABABAB] font-medium text-[10px]'>
         You haven't invited anyone yet

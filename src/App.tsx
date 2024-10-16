@@ -11,6 +11,7 @@ import ModalDaily from './components/ModalDaily';
 import ModalFriends from './components/ModalFriends';
 import ModalSubscription from './components/ModalSubscription';
 import ModalWithdraw from './components/ModalWithdraw';
+import Notifications from './components/Notifications';
 import { useClicker, useGameFriendsQuery, useModal, useProfileQuery } from './hooks';
 
 const App: FC = () => {
@@ -27,7 +28,7 @@ const App: FC = () => {
   }, [viewport]);
 
   return (
-    <div className='flex flex-col bg-[#020202] text-white pt-9 select-none overflow-hidden'>
+    <div className='relative flex flex-col bg-[#020202] text-white pt-9 select-none overflow-hidden'>
       <Header />
       <main className='h-[calc(100vh-212px)] relative flex flex-col justify-between gap-4'>
         <CoinsInfo tapCoins={data?.tap_reward || 1} coins={balance} />
@@ -42,6 +43,8 @@ const App: FC = () => {
         {typeContent === 'withdraw' && <ModalWithdraw />}
         {typeContent === 'cash' && <ModalCash />}
       </Modal>
+
+      <Notifications />
     </div>
   );
 };
