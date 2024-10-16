@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import toast from 'react-hot-toast';
 import { SealIcon, StarIcon } from '../../assets/icons';
 import { useGameDailyRewardQuery, useModal, useProfileQuery } from '../../hooks';
 import Button from '../Button';
@@ -20,7 +21,13 @@ const ModalDaily: FC = () => {
       return onClose();
     }
 
-    await refetch();
+    await refetch()
+      .then(() => {
+        toast.success(`+${profile?.daily_reward.amount} YLU coin`);
+      })
+      .catch(() => {
+        toast.error('Error!');
+      });
     refetchProfile();
   };
 
