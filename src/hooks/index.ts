@@ -1,6 +1,7 @@
 export * from './useAudio';
 export * from './useCheckSubscriptionQuery';
 export * from './useClicker';
+export * from './useCopyToClipboard';
 export * from './useDebounce';
 export * from './useGameDailyRewardQuery';
 export * from './useGameFriendsQuery';
